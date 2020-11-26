@@ -384,19 +384,19 @@ end
 
 to read_csv
 
-  file-open "data_pod_positivi.csv"
+  file-open "output.csv"
   set fileList []
   set j 0
   set firstList []
 
   while [not file-at-end?] [
     set csv file-read-line
-    set csv word csv ";"  ; add comma for loop termination
+    set csv word csv ","  ; add comma for loop termination
 
     let mylist []  ; list of values
     while [not empty? csv]
     [
-      let $y position ";" csv
+      let $y position "," csv
       let $item1 substring csv 0 $y  ; extract item
       carefully [set $item1 read-from-string $item1][] ; convert if number
       set mylist lput $item1 mylist  ; append to list
@@ -425,16 +425,17 @@ to read_csv
       set costo_m     item d fileList
       show costo_m
       set j j + 1
-      set a a + 4
-      set b b + 4
-      set c c + 4
-      set d d + 4
+      set a a + 5
+      set b b + 5
+      set c c + 5
+      set d d + 5
 
     ]
   ]
   show fileList
   file-close
 end
+
 
 
 to read_request
